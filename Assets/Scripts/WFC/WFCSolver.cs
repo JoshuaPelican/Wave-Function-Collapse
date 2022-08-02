@@ -12,9 +12,17 @@ public class WFCSolver : MonoBehaviour
 
     WFCTile[][] grid;
 
-    Stack<WFCTile> stack = new Stack<WFCTile>();
+    Stack<Vector2Int> stack = new Stack<Vector2Int>();
 
     bool IsCollapsed => grid.All(x => x.All(x => x.IsCollapsed));
+
+    readonly static Vector2Int[] validDirections = new Vector2Int[4]
+    {
+        new Vector2Int(-1, 0),
+        new Vector2Int(1, 0),
+        new Vector2Int(0, 1),
+        new Vector2Int(0, -1),
+    };
 
 
     private void Start()
@@ -49,6 +57,7 @@ public class WFCSolver : MonoBehaviour
     {
         Vector2Int coords = GetMinEntropyCoords();
         CollapseAt(coords);
+        Propogate(coords);
     }
 
     Vector2Int GetMinEntropyCoords()
@@ -86,12 +95,44 @@ public class WFCSolver : MonoBehaviour
 
     void CollapseAt(Vector2Int coords)
     {
+        Debug.Log(coords);
         grid[coords.x][coords.y].CollapseRandomly();
     }
 
     void Propogate(Vector2Int coords)
     {
+        stack.Push(coords);
 
+        List<Vector2Int> propogatedCoords = new List<Vector2Int>();
+
+        while(stack.Count > 0)
+        {
+            Vector2Int currentCoords = stack.Pop();
+            WFCTile currentTile = grid[currentCoords.x][currentCoords.y];
+
+            for (int i = 0; i < validDirections.Length; i++)
+            {
+                Vector2Int otherCoords = currentCoords + validDirections[i];
+
+                if (otherCoords.x >= Width || otherCoords.x < 0 || otherCoords.y >= Height || otherCoords.y < 0)
+                    continue;
+
+                WFCTile otherTile = grid[otherCoords.x][otherCoords.y];
+                bool changed = false;
+
+                foreach (Prototype2D prototype in currentTile.ValidPrototypes)
+                {
+                    if (otherTile.Constrain(i, prototype) > 0)
+                    {
+                        changed = true;
+                    }
+                }
+
+                propogatedCoords.Add(currentCoords);
+
+                if (changed && !stack.Contains(otherCoords) && !propogatedCoords.Contains(otherCoords)) stack.Push(otherCoords);
+            }
+        }
     }
 
     void Test()
