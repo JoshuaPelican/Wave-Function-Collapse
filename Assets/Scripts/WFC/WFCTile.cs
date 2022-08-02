@@ -32,8 +32,9 @@ public class WFCTile
 
     public int Constrain(int direction, Prototype2D prototype)
     {
+        
         int numRemoved = 0;
-
+        /*
         switch (direction)
         {
             case 0:
@@ -82,6 +83,8 @@ public class WFCTile
         }
 
         Debug.Log("Number Removed: " + numRemoved);
+        */
         return numRemoved;
+        
     }
 }
