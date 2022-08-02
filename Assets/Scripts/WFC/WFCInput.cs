@@ -1,27 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class WFCInput : MonoBehaviour
 {
-    [SerializeField] int Width, Height;
+    [SerializeField] Texture2D TextureInput;
+    [SerializeField] int N = 3;
 
-    Tilemap inputTilemap;
+    List<Color[][]> patterns = new List<Color[][]>();
 
-    private void OnDrawGizmos()
+    void GetAllPatternsFromInput()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, new Vector3(Width, Height, 0));
-    }
+        var pixelData = TextureInput.GetRawTextureData<Color>();
+        int index = 0;
 
-    private void Awake()
-    {
-        inputTilemap = GetComponentInChildren<Tilemap>();
-    }
+        for (int x = 0; x < TextureInput.width; x++)
+        {
+            for (int y = 0; y < TextureInput.height; y++)
+            {
+                for (int i = -1; i < 2; i++)
+                {
+                    for (int j = -1; j < 2; j++)
+                    {
 
-    void GeneratePrototypes()
-    {
-
+                    }
+                }
+            }
+        }
     }
 }
