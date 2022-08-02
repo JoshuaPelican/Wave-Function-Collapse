@@ -4,21 +4,20 @@ using UnityEngine;
 public class WFCTile
 {
     public int X, Y;
-
     public int Entropy => ValidPrototypes.Count;
     public bool IsCollapsed => Entropy == 1;
 
-    public List<Prototype2D> ValidPrototypes;
+    public List<Prototype> ValidPrototypes;
 
-    public WFCTile(int x, int y, List<Prototype2D> prototypes)
+    public WFCTile(int x, int y, List<Prototype> prototypes)
     {
         X = x;
         Y = y;
 
-        ValidPrototypes = new List<Prototype2D>(prototypes);
+        ValidPrototypes = new List<Prototype>(prototypes);
     }
 
-    public void CollapseTo(Prototype2D prototype)
+    public void CollapseTo(Prototype prototype)
     {
         ValidPrototypes.RemoveAll(x => x != prototype);
     }
@@ -26,11 +25,11 @@ public class WFCTile
     public void CollapseRandomly()
     {
         Debug.Log(ValidPrototypes.Count);
-        Prototype2D randPrototype = ValidPrototypes[Random.Range(0, ValidPrototypes.Count)];
+        Prototype randPrototype = ValidPrototypes[Random.Range(0, ValidPrototypes.Count)];
         CollapseTo(randPrototype);
     }
 
-    public int Constrain(int direction, Prototype2D prototype)
+    public int Constrain(int direction, Prototype prototype)
     {
         int numRemoved = 0;
 

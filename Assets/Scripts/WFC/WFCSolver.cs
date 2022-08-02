@@ -7,7 +7,7 @@ public class WFCSolver : MonoBehaviour
     [Header("WFC Settings")]
     [SerializeField] int Width;
     [SerializeField] int Height;
-    [SerializeField] List<Prototype2D> AllPrototypes = new List<Prototype2D>();
+    [SerializeField] List<Prototype> AllPrototypes = new List<Prototype>();
     [SerializeField] Transform TileContainer;
 
     WFCTile[][] grid;
@@ -120,7 +120,7 @@ public class WFCSolver : MonoBehaviour
                 WFCTile otherTile = grid[otherCoords.x][otherCoords.y];
                 bool changed = false;
 
-                foreach (Prototype2D prototype in currentTile.ValidPrototypes)
+                foreach (Prototype prototype in currentTile.ValidPrototypes)
                 {
                     if (otherTile.Constrain(i, prototype) > 0)
                     {
