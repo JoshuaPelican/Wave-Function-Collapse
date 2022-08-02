@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b971bdd2636ac41a3d595a70618a0d, type: 3}
+  m_Name: Ground_Top
+  m_EditorClassIdentifier: 
+  GameObject: {fileID: 2545073066162375791, guid: dbeffd237e317f84a93ac5f657bba285, type: 3}
+  LeftNeighbors:
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: f90e17c9631537d4088b2c139c2425a2, type: 2}
+  - {fileID: 11400000, guid: 8459e97bb78a2a442b9a8c7637652287, type: 2}
+  RightNeighbors:
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: f90e17c9631537d4088b2c139c2425a2, type: 2}
+  - {fileID: 11400000, guid: 8459e97bb78a2a442b9a8c7637652287, type: 2}
+  TopNeighbors:
+  - {fileID: 11400000, guid: 1e08a1cde8186c04a8acc480e50485c7, type: 2}
+  BottomNeighbors:
+  - {fileID: 11400000, guid: f90e17c9631537d4088b2c139c2425a2, type: 2}
+  - {fileID: 11400000, guid: 8459e97bb78a2a442b9a8c7637652287, type: 2}
