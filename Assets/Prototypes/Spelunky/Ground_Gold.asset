@@ -22,6 +22,7 @@ MonoBehaviour:
   TopNeighbors:
   - {fileID: 11400000, guid: f90e17c9631537d4088b2c139c2425a2, type: 2}
   - {fileID: 11400000}
+  - {fileID: 11400000, guid: f82eb245d409c7a4a89e4ebe36554e64, type: 2}
   BottomNeighbors:
   - {fileID: 11400000, guid: f90e17c9631537d4088b2c139c2425a2, type: 2}
   - {fileID: 11400000}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WFCTile
@@ -25,63 +26,42 @@ public class WFCTile
 
     public void CollapseRandomly()
     {
-        Debug.Log(ValidPrototypes.Count);
         Prototype2D randPrototype = ValidPrototypes[Random.Range(0, ValidPrototypes.Count)];
         CollapseTo(randPrototype);
     }
 
-    public int Constrain(int direction, Prototype2D prototype)
+    public void Constrain(Prototype2D prototype)
     {
-        int numRemoved = 0;
+        ValidPrototypes.Remove(prototype);
+    }
 
-        switch (direction)
+    public List<Prototype2D> ValidNeighbors(int direction)
+    {
+        List<Prototype2D> validNeighbors = new List<Prototype2D>();
+
+        foreach (Prototype2D prototype in ValidPrototypes)
         {
-            case 0:
-                for (int i = ValidPrototypes.Count - 1; i >= 0; i--)
-                {
-                    if (!prototype.LeftNeighbors.Contains(ValidPrototypes[i]))
-                    {
-                        ValidPrototypes.RemoveAt(i);
-                        numRemoved++;
-                    }
-                }
-                break;
-            case 1:
-                for (int i = ValidPrototypes.Count - 1; i >= 0; i--)
-                {
-                    if (!prototype.RightNeighbors.Contains(ValidPrototypes[i]))
-                    {
-                        ValidPrototypes.RemoveAt(i);
-                        numRemoved++;
-                    }
-                }
-                break;
-            case 2:
-                for (int i = ValidPrototypes.Count - 1; i >= 0; i--)
-                {
-                    if (!prototype.TopNeighbors.Contains(ValidPrototypes[i]))
-                    {
-                        ValidPrototypes.RemoveAt(i);
-                        numRemoved++;
-                    }
-                }
-                break;
-            case 3:
-                for (int i = ValidPrototypes.Count - 1; i >= 0; i--)
-                {
-                    if (!prototype.BottomNeighbors.Contains(ValidPrototypes[i]))
-                    {
-                        ValidPrototypes.RemoveAt(i);
-                        numRemoved++;
-                    }
-                }
-                break;
-            default:
-                Debug.LogErrorFormat("Direction {0} does not exist.", direction);
-                break;
+            List<Prototype2D> directionalList = new List<Prototype2D>();
+
+            switch (direction)
+            {
+                case 0:
+                    directionalList = new List<Prototype2D>(prototype.LeftNeighbors);
+                    break;
+                case 1:
+                    directionalList = new List<Prototype2D>(prototype.RightNeighbors);
+                    break;
+                case 2:
+                    directionalList = new List<Prototype2D>(prototype.TopNeighbors);
+                    break;
+                case 3:
+                    directionalList = new List<Prototype2D>(prototype.BottomNeighbors);
+                    break;
+            }
+
+            validNeighbors = validNeighbors.Union(directionalList).ToList();
         }
 
-        Debug.Log("Number Removed: " + numRemoved);
-        return numRemoved;
+        return validNeighbors;
     }
 }

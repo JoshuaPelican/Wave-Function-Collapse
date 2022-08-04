@@ -380,16 +380,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c046e04de360d94fadf4c73269b3f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: 18
-  Height: 10
+  Width: 4
+  Height: 4
   AllPrototypes:
-  - {fileID: 11400000, guid: 1e08a1cde8186c04a8acc480e50485c7, type: 2}
-  - {fileID: 11400000, guid: f90e17c9631537d4088b2c139c2425a2, type: 2}
   - {fileID: 11400000, guid: 8459e97bb78a2a442b9a8c7637652287, type: 2}
-  - {fileID: 11400000, guid: 1d23c9efd4d864d4aa87b3a4db5b2e7f, type: 2}
+  - {fileID: 11400000, guid: f90e17c9631537d4088b2c139c2425a2, type: 2}
   - {fileID: 11400000, guid: f82eb245d409c7a4a89e4ebe36554e64, type: 2}
-  - {fileID: 11400000, guid: e16ec519645370446a10f4953c2eea73, type: 2}
   TileContainer: {fileID: 724346939}
+  tilemap: {fileID: 0}
 --- !u!4 &724346939
 Transform:
   m_ObjectHideFlags: 0
